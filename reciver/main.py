@@ -11,4 +11,6 @@ client, _ = server.accept()
 file_name = client.recv(1024).decode()
 file_size = client.recv(1024).decode()
 
+
+
 print(f"File: {file_name} has {file_size} bytes.")
