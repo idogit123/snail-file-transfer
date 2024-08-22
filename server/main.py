@@ -1,7 +1,4 @@
-import os
 import socket
-from easygui import fileopenbox
-from time import sleep
 
 class SocketServer:
     def __init__(self, port = 8080) -> None:
@@ -29,10 +26,3 @@ class SocketServer:
     def close(self):
         self.server.close()
         print("[CLOSED] Server closed.")
-    
-
-server = SocketServer(port=8081)
-
-server.accept()
-
-server.close()
