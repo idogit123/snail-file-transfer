@@ -1,5 +1,6 @@
 import socket
 from reciver.recive import Reciver
+from sender.sender import Sender
 
 class SocketServer:
     def __init__(self, port = 8080) -> None:
@@ -7,7 +8,7 @@ class SocketServer:
         self.HOST_IP = socket.gethostbyname(self.HOST_NAME)
         self.ADDRESS = (self.HOST_IP, port)
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.reciver = None
+        self.connection = None
 
         self.server.bind(self.ADDRESS)
         print(f"[BIND] Server is bound to {self.ADDRESS}")
@@ -23,22 +24,22 @@ class SocketServer:
         client, client_address = self.server.accept()
         print(f"[ACCEPT] Accepted connection from {client_address}")
 
-        self.reciver = Reciver(client)
+        self.connection = client
 
         return client, client_address
     
     def send_tag(self, data: bytes, tag: bytes):
-        self.server.send(data + tag)
+        Sender.send_tag(self.server, data, tag)
 
     def recive_tag(self, tag: bytes):
-        if self.reciver == None:
+        if self.connection == None:
             raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
 
-        return self.reciver.recive_til_tag(tag)
+        return Reciver.recive_til_tag(self.connection, tag)
     
     def send_file(self, file_path: str):
-        with open(file_path, 'rb') as file:
-            pass
+        Sender.send_file(self.server, file_path)
+            
     
     def close(self):
         self.server.close()
