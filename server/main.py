@@ -15,12 +15,12 @@ class SocketServer:
         
 
     def connect(self, address):
-        self.server.listen()
-        print(f"[LISTENING] Server listening on {self.ADDRESS}")
         self.server.connect(address)
         print(f"[CONNECT SUCCEED] Succesfuly connected to {address}")
 
     def accept(self):
+        self.server.listen()
+        print(f"[LISTENING] Server listening on {self.ADDRESS}")
         client, client_address = self.server.accept()
         print(f"[ACCEPT] Accepted connection from {client_address}")
 
@@ -33,4 +33,6 @@ class SocketServer:
 
 server = SocketServer(port=8081)
 
-server.connect(("10.0.0.175", 8080))
+server.accept()
+
+server.close()
