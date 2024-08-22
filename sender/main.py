@@ -1,6 +1,7 @@
 import os
 import socket
 from easygui import fileopenbox
+from time import sleep
 
 ADDRESS = ("10.0.0.175", 8080)
 
@@ -16,6 +17,7 @@ file_size = os.path.getsize(file_path)
 file_name = os.path.basename(file_path)
 
 client.send(f"{file_name}<NAME>".encode())
+
 client.send(f"{str(file_size)}<SIZE>".encode())
 
 data = file.read()
@@ -25,4 +27,4 @@ client.send(b"<FILE>")
 print("file sent")
 
 file.close()
-client.close()
+# client.close()
