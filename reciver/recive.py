@@ -36,6 +36,9 @@ class Reciver:
             message_bytes += data
 
         return message_bytes
+    
+    def recive_file(self):
+        pass
 
 
 

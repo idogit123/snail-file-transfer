@@ -27,14 +27,18 @@ class SocketServer:
 
         return client, client_address
     
-    def send(self, data: bytes, tag: bytes):
+    def send_tag(self, data: bytes, tag: bytes):
         self.server.send(data + tag)
 
-    def recive_til_tag(self, tag: bytes):
+    def recive_tag(self, tag: bytes):
         if self.reciver == None:
             raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
 
         return self.reciver.recive_til_tag(tag)
+    
+    def send_file(self, file_path: str):
+        with open(file_path, 'rb') as file:
+            pass
     
     def close(self):
         self.server.close()
