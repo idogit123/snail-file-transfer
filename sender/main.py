@@ -2,7 +2,7 @@ import os
 import socket
 from easygui import fileopenbox
 
-ADDRESS = ("localhost", 8080)
+ADDRESS = ("10.0.0.175", 8080)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDRESS)
