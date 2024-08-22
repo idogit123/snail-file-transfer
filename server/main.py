@@ -1,5 +1,5 @@
 import socket
-from reciver.main import Reciver
+from reciver.recive import Reciver
 
 class SocketServer:
     def __init__(self, port = 8080) -> None:
