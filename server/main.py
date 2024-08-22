@@ -1,6 +1,5 @@
 import os
 import socket
-from socket import _Address
 from easygui import fileopenbox
 from time import sleep
 
@@ -12,15 +11,13 @@ class SocketServer:
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         self.server.bind(self.ADDRESS)
+        print(f"[BIND] Server is bound to {self.ADDRESS}")
+        
+
+    def connect(self, address):
         self.server.listen()
         print(f"[LISTENING] Server listening on {self.ADDRESS}")
-
-    def connect(self, address: _Address):
-        try:
-            self.server.connect(address)
-        except:
-            print(f"[CONNECT FAILD] Faild to connect to {address}")
-
+        self.server.connect(address)
         print(f"[CONNECT SUCCEED] Succesfuly connected to {address}")
 
     def accept(self):
@@ -29,5 +26,11 @@ class SocketServer:
 
         return client, client_address
     
+    def close(self):
+        self.server.close()
+        print("[CLOSED] Server closed.")
+    
 
-server = SocketServer()
+server = SocketServer(port=8081)
+
+server.connect(("10.0.0.175", 8080))
