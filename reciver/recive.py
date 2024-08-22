@@ -31,10 +31,7 @@ class Reciver:
 
         while last_bytes != tag:
             data = last_bytes + self.client.recv(1024) if not b'\x00' in last_bytes else self.client.recv(1024)
-            print(f"data: {data}")
             last_bytes, data = Reciver.update_last_bytes(last_bytes, data)
-            print(f"last bytes: {last_bytes}")
-            print(f"data after: {data}")
 
             message_bytes += data
 

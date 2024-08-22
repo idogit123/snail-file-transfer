@@ -30,11 +30,11 @@ class SocketServer:
     def send(self, data: bytes, tag: bytes):
         self.server.send(data + tag)
 
-    def recive(self):
+    def recive_til_tag(self, tag: bytes):
         if self.reciver == None:
             raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
 
-        return self.reciver.recive_til_tag('<HELLO>')
+        return self.reciver.recive_til_tag(tag)
     
     def close(self):
         self.server.close()
