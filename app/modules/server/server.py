@@ -38,7 +38,10 @@ class SocketServer:
         return Reciver.recive_til_tag(self.server if self.connection == None else self.connection, tag)
     
     def send_file(self, file_path: str):
-        Sender.send_file(self.server, file_path)
+        Sender.send_file(self.server if self.connection == None else self.connection, file_path)
+
+    def recive_file(self, file_size: int) -> bytes:
+        return Reciver.recive_file(self.server if self.connection == None else self.connection, file_size)
     
     def close(self):
         self.server.close()

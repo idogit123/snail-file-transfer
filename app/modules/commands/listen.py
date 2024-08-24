@@ -23,5 +23,8 @@ def listen_function(client: SocketServer):
         print("[REJECTED] You rejected the request.")
         return False
 
-
-    
+    # 6: If approved, recive file
+    file_bytes = client.recive_file(file_size)
+    with open(file_name, 'wb+') as file:
+        file.write(file_bytes)
+    print("[RECIVED] File recived.")

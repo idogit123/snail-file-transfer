@@ -22,8 +22,8 @@ class Reciver:
 
         return message_bytes
     
-    def recive_file(self):
-        pass
+    def recive_file(client: socket, file_size: int):
+        return client.recv(file_size)
 
 
 

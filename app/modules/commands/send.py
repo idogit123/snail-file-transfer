@@ -25,8 +25,12 @@ def send_function(client: SocketServer):
 
     # 4: Get accept tag
     is_accepted = bool(client.recive_tag(b"<ACCEPT>").decode())
+    print(is_accepted)
 
     # 5: If deny, exit
     if not is_accepted:
         print("[REJECTED] The request was rejected.")
         return False
+    
+    # 6: If approved, send file
+    client.send_file(file_path)
