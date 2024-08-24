@@ -27,6 +27,13 @@ def listen_function(client: SocketServer):
 
     # 6: If approved, recive file
     file_bytes = client.recive_file(file_size)
-    with open(file_name, 'wb+') as file:
-        file.write(file_bytes)
     print("[RECIVED] File recived.")
+
+    # 7: Save file
+    file_save_path: str = UI.ask_for_save_path(
+        "Select save location for the file in the 'Save File' window.",
+        title="Save File",
+        file_name=file_name
+    )
+    with open(file_save_path, 'wb+') as file:
+        file.write(file_bytes)

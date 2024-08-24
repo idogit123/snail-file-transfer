@@ -1,6 +1,6 @@
 from ..commands.commands import commands, Command
 from typing import Any, Callable
-from easygui import fileopenbox
+from easygui import fileopenbox, filesavebox
 
 class UI:
     def welcome():
@@ -38,3 +38,7 @@ class UI:
     def ask_for_file(console_msg: str, msg: str | None = None, title: str | None = None) -> str:
         print(f"[OPEN FILE] {console_msg}")
         return fileopenbox(msg, title, multiple=False)
+
+    def ask_for_save_path(console_msg: str, msg: str | None = None, title: str | None = None, file_name: str | None = None):
+        print(f"[SAVE FILE] {console_msg}")
+        return filesavebox(msg=msg, title=title, default=file_name)
