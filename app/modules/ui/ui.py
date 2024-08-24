@@ -1,5 +1,6 @@
 from ..commands.commands import commands, Command
-from typing import Callable
+from typing import Any, Callable
+from easygui import fileopenbox
 
 class UI:
     def welcome():
@@ -33,3 +34,7 @@ class UI:
             command = UI.ask_for("Enter command: ", print_options=UI.print_commands)
 
         return commands.get(command)
+    
+    def ask_for_file(console_msg: str, msg: str | None = None, title: str | None = None) -> str:
+        print(f"[OPEN FILE] {console_msg}")
+        return fileopenbox(msg, title, multiple=False)

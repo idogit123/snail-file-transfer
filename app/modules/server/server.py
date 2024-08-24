@@ -31,7 +31,7 @@ class SocketServer:
     def send_tag(self, data: bytes, tag: bytes):
         Sender.send_tag(self.server, data, tag)
 
-    def recive_tag(self, tag: bytes):
+    def recive_tag(self, tag: bytes) -> bytes:
         # if self.connection == None:
         #     raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
 
