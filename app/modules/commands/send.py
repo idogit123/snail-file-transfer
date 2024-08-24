@@ -9,3 +9,4 @@ def send_function(client: SocketServer):
         not_valid_msg="Invalid port number."
     ))
     client.connect((reciver_IP, reciver_port))
+    client.send_tag(b"Hello World!", b"<REQUEST>")
