@@ -10,3 +10,4 @@ def send_function(client: SocketServer):
     ))
     client.connect((reciver_IP, reciver_port))
     client.send_tag(b"Hello World!", b"<REQUEST>")
+    print(client.recive_tag(b"<APPROVE>"))
