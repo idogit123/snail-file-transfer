@@ -22,3 +22,11 @@ def send_function(client: SocketServer):
     file_size = getsize(file_path)
     file_metadata = file_name.encode() + b';' + str(file_size).encode()
     client.send_tag(file_metadata, b"<METADATA>")
+
+    # 4: Get accept tag
+    is_accepted = bool(client.recive_tag(b"<ACCEPT>").decode())
+
+    # 5: If deny, exit
+    if not is_accepted:
+        print("[REJECTED] The request was rejected.")
+        return False
