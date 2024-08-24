@@ -29,7 +29,7 @@ class SocketServer:
         return client, client_address
     
     def send_tag(self, data: bytes, tag: bytes):
-        Sender.send_tag(self.server, data, tag)
+        Sender.send_tag(self.server if self.connection == None else self.connection, data, tag)
 
     def recive_tag(self, tag: bytes) -> bytes:
         # if self.connection == None:
