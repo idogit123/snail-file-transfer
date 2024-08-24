@@ -1,6 +1,6 @@
 import socket
-from reciver.recive import Reciver
-from sender.sender import Sender
+from ..reciver.recive import Reciver
+from ..sender.sender import Sender
 
 class SocketServer:
     def __init__(self, port = 8080) -> None:
@@ -39,7 +39,6 @@ class SocketServer:
     
     def send_file(self, file_path: str):
         Sender.send_file(self.server, file_path)
-            
     
     def close(self):
         self.server.close()

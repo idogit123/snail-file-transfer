@@ -17,7 +17,7 @@ class Reciver:
         while last_bytes != tag:
             data = last_bytes + client.recv(1024) if not b'\x00' in last_bytes else client.recv(1024)
             last_bytes, data = Reciver.update_last_bytes(last_bytes, data)
-
+            
             message_bytes += data
 
         return message_bytes
