@@ -34,3 +34,4 @@ def send_function(client: SocketServer):
     
     # 6: If approved, send file
     client.send_file(file_path)
+    print("[SENT] File was sent to the reciver.")

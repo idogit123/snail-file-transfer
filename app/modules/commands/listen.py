@@ -7,7 +7,9 @@ def listen_function(client: SocketServer):
     client.accept()
 
     # 3: Recive file metadata
-    file_name, file_size = client.recive_tag(b"<METADATA>").decode().split(';')
+    file_metadata = client.recive_tag(b"<METADATA>").decode().split(';')
+    file_name = file_metadata[0]
+    file_size = int(file_metadata[1])
     print(f"Send request recived: File: {file_name}, Size: {file_size} bytes.")
 
     # 4: Accept / Deny request
