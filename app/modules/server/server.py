@@ -32,10 +32,10 @@ class SocketServer:
         Sender.send_tag(self.server, data, tag)
 
     def recive_tag(self, tag: bytes):
-        if self.connection == None:
-            raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
+        # if self.connection == None:
+        #     raise ConnectionError("[NONE RECIVER] Server need to accept connection before reciving.")
 
-        return Reciver.recive_til_tag(self.connection, tag)
+        return Reciver.recive_til_tag(self.server if self.connection == None else self.connection, tag)
     
     def send_file(self, file_path: str):
         Sender.send_file(self.server, file_path)
